@@ -7,11 +7,13 @@ import datetime as dt
 import matplotlib.pyplot as plt
 import japanize_matplotlib
 import math
+from deta import Deta
+import os
 
-
+'''
 with open('./config.yaml') as file:
     config = yaml.safe_load(file)
-
+'''
 
 st.set_page_config(
         page_title='Airwork採用管理集計ツール',
@@ -28,6 +30,11 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 st.title('Airwork採用管理 応募解析')
 
+deta = Deta(DETA_KEY)
+db_config = deta.Base("config")
+fetch = db_config.fetch()
+config = fetch.items[0]
+
 authenticator = stauth.Authenticate(
     config['credentials'],
     config['cookie']['name'],
@@ -35,6 +42,7 @@ authenticator = stauth.Authenticate(
     config['cookie']['expiry_days'],
     config['preauthorized']
 )
+
 
 # ログインメソッドで入力フォームを配置
 name, authentication_status, username = authenticator.login('Login', 'main')
