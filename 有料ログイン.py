@@ -30,7 +30,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 st.title('Airwork採用管理 応募解析')
 
-deta = Deta(DETA_KEY)
+deta = Deta(st.secrets["DETA_KEY"])
 db_config = deta.Base("config")
 fetch = db_config.fetch()
 config = fetch.items[0]
