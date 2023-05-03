@@ -10,10 +10,10 @@ import math
 from deta import Deta
 import os
 
-'''
-with open('./config.yaml') as file:
-    config = yaml.safe_load(file)
-'''
+
+# with open('./config.yaml') as file:
+#     config = yaml.safe_load(file)
+
 
 st.set_page_config(
         page_title='Airwork採用管理集計ツール',
